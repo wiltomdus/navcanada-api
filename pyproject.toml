@@ -1,0 +1,12 @@
+[project]
+name = "navcanada-api"
+version = "0.1.0"
+description = "API for local mongoDB instance that gathers NavCanada upper winds data"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.115.7",
+    "pydantic-settings>=2.7.1",
+    "pymongo>=4.10.1",
+    "uvicorn>=0.34.0",
+]
