@@ -7,16 +7,20 @@ This project is a FastAPI application that exposes data from a local MongoDB dat
 ```
 navcanada-api
 ├── src
-│   ├── main.py                # Entry point of the application
-│   ├── controllers            # Contains API endpoint handlers
+│   ├── main.py               # Entry point of the application
+│   ├── controllers           # Contains API endpoint handlers
 │   │   └── upper_winds_controller.py
-│   ├── models                 # Defines data models
-│   │   └── upper_winds_model.py
-│   ├── services               # Contains database interaction logic
+│   ├── services              # Contains database interaction logic
 │   │   └── upper_winds_service.py
 │   └── config.py             # Configuration settings
-├── requirements.txt           # Project dependencies
-└── README.md                  # Project documentation
+├── requirements.txt          # Project dependencies
+├── .python-version           # Reference python version
+├── pyproject.toml            # Configuration file used by packaging tools
+├── uv.lock                   # uv python package and project manager dependency file
+├── README.md                 # Project documentation
+├── LICENSE                   # Project license
+├── Dockerfile                # Instructions for docker image building
+└── docker-compose.yml        # Config file to deploy the service to docker
 ```
 
 ## Setup Instructions
@@ -24,7 +28,7 @@ navcanada-api
 1. **Clone the repository:**
    ```
    git clone <repository-url>
-   cd python-api
+   cd navcanada-api
    ```
 
 2. **Create a virtual environment:**
@@ -39,9 +43,11 @@ navcanada-api
    ```
 
 4. **Configure MongoDB connection:**
-   Update the `src/config.py` file with your MongoDB connection details.
+   
+   Add a ```.env``` file with the mongodb url
+   Example : ```MONGODB_URL=mongodb://localhost:27017```
 
-5. **Run the application:**
+6. **Run the application:**
    ```
    uvicorn src.main:app --reload
    ```
