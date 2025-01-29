@@ -35,3 +35,37 @@ async def get_all_upper_winds():
         return data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/upper-winds/station/{icao_code}/date/{date}")
+async def get_upper_winds_station_by_date(icao_code: str, date: str):
+    try:
+        data = upper_winds_service.get_upper_winds_data_by_date(icao_code, date)
+        if not data:
+            raise HTTPException(
+                status_code=404, detail="Data not found for the specified date"
+            )
+        return data
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/upper-winds/station/{icao_code}/date-range")
+async def get_upper_winds_station_by_date_range(
+    icao_code: str, start_date: str, end_date: str
+):
+    try:
+        data = upper_winds_service.get_upper_winds_data_by_date_range(
+            icao_code, start_date, end_date
+        )
+        if not data:
+            raise HTTPException(
+                status_code=404, detail="Data not found for the specified date range"
+            )
+        return data
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
